@@ -1,0 +1,66 @@
+<Window x:Class="SimpleSheets.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:SimpleSheets.Controls"
+        Title="SimpleSheets"
+        WindowStartupLocation="CenterScreen"
+        Height="720"
+        Width="1100"
+        MinHeight="420"
+        MinWidth="640"
+        Background="White">
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="_Файл">
+        <MenuItem Header="_Создать" InputGestureText="Ctrl+N" Click="NewClick"/>
+        <MenuItem Header="_Открыть..." InputGestureText="Ctrl+O" Click="OpenClick"/>
+        <MenuItem Header="_Сохранить" InputGestureText="Ctrl+S" Click="SaveClick"/>
+        <MenuItem Header="Сохранить _как..." Click="SaveAsClick"/>
+        <Separator/>
+        <MenuItem Header="В_ыход" Click="ExitClick"/>
+      </MenuItem>
+    </Menu>
+
+    <Border DockPanel.Dock="Top" Padding="8,6" BorderBrush="#D0D0D0" BorderThickness="0,0,0,1">
+      <DockPanel>
+        <Border DockPanel.Dock="Left" Width="92" Margin="0,0,8,0" BorderBrush="#C8C8C8" BorderThickness="1" CornerRadius="2" Background="White">
+          <TextBlock x:Name="AddressBox" Margin="8,0" VerticalAlignment="Center" FontSize="14"/>
+        </Border>
+        <Border BorderBrush="#C8C8C8" BorderThickness="1" CornerRadius="2" Background="White">
+          <TextBox x:Name="FormulaBox"
+                   BorderThickness="0"
+                   Padding="8,4"
+                   FontSize="14"
+                   VerticalContentAlignment="Center"
+                   TextChanged="FormulaBoxTextChanged"
+                   PreviewKeyDown="FormulaBoxPreviewKeyDown"
+                   LostFocus="FormulaBoxLostFocus"/>
+        </Border>
+      </DockPanel>
+    </Border>
+
+    <ListBox x:Name="SheetTabs"
+             DockPanel.Dock="Bottom"
+             Height="36"
+             BorderThickness="0,1,0,0"
+             BorderBrush="#D0D0D0"
+             Background="#F7F7F7"
+             SelectionChanged="SheetTabsSelectionChanged">
+      <ListBox.ItemsPanel>
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+      <ListBox.ItemContainerStyle>
+        <Style TargetType="ListBoxItem">
+          <Setter Property="Padding" Value="14,6"/>
+          <Setter Property="Margin" Value="4,4,0,4"/>
+          <Setter Property="FontSize" Value="13"/>
+          <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+      </ListBox.ItemContainerStyle>
+    </ListBox>
+
+    <controls:SheetGrid x:Name="Sheet"/>
+  </DockPanel>
+</Window>

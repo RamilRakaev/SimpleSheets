@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SimpleSheets.Tests/SimpleSheets.Tests.csproj" />
+  <Project Path="SimpleSheets/SimpleSheets.csproj" />
+</Solution>
